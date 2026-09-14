@@ -10,7 +10,7 @@
     "report": "playwright show-report"
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.0",
-    "@faker-js/faker": "^9.0.0"
+    "@playwright/test": "^1.63.0",
+    "@faker-js/faker": "^10.6.0"
   }
 }

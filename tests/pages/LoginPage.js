@@ -1,26 +1,23 @@
 // tests/pages/LoginPage.js
 //
-// ATENÇÃO: os seletores abaixo seguem a estrutura conhecida/documentada do
-// front-end do ServeRest (ids "email", "password", "entrar" e as mensagens
-// de validação em português). Como não foi possível inspecionar o DOM ao
-// vivo nesta sessão, valide-os com `npx playwright codegen
-// https://front.serverest.dev/login` ou via Playwright MCP + Claude Code
-// (veja MCP-CLAUDE-WORKFLOW.md) antes de rodar a suíte pela primeira vez.
+// Seletores focados em acessibilidade e na interface atual do ServeRest.
+// Isso reduz a fragilidade do Page Object Model quando o front muda pequenos
+// detalhes visuais ou de atributos, mantendo o teste estável.
 
 class LoginPage {
   /** @param {import('@playwright/test').Page} page */
   constructor(page) {
     this.page = page;
 
-    this.emailInput = page.locator('#email');
-    this.passwordInput = page.locator('#password');
-    this.loginButton = page.locator('#entrar');
-    this.cadastrarLink = page.locator('a[href="/cadastrarusuarios"]');
+    this.emailInput = page.getByPlaceholder('Digite seu email');
+    this.passwordInput = page.getByPlaceholder('Digite sua senha');
+    this.loginButton = page.getByRole('button', { name: 'Entrar' });
+    this.cadastrarLink = page.locator('[data-testid="cadastrar"]');
 
     // Mensagem exibida quando email/senha não conferem com nenhum usuário
     this.invalidCredentialsMessage = page.getByText('Email e/ou senha inválidos');
 
-    // Mensagens de campo obrigatório (react-hook-form)
+    // Mensagens de campo obrigatório
     this.emailRequiredMessage = page.getByText('Email é obrigatório');
     this.passwordRequiredMessage = page.getByText('Password é obrigatório');
   }

@@ -15,8 +15,8 @@ test.describe('Login - ServeRest Front', () => {
   test('login com credenciais válidas redireciona para a home', async ({ page }) => {
     await loginPage.login(validUser.email, validUser.password);
 
-    await expect(page).toHaveURL(/\/home/);
-    await expect(page.getByText('Lista de produtos')).toBeVisible();
+    await expect(page).toHaveURL(/\/admin\/home/);
+    await expect(page.getByRole('heading', { name: /Bem Vindo/i })).toBeVisible();
   });
 
   test('login com email não cadastrado exibe mensagem de erro', async () => {
