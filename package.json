@@ -1,0 +1,16 @@
+{
+  "name": "serverest-front-playwright",
+  "version": "1.0.0",
+  "description": "Suíte de testes E2E com Playwright para o front-end do ServeRest (https://front.serverest.dev)",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@faker-js/faker": "^9.0.0"
+  }
+}
