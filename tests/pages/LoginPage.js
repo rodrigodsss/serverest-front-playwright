@@ -18,8 +18,10 @@ class LoginPage {
     this.invalidCredentialsMessage = page.getByText('Email e/ou senha inválidos');
 
     // Mensagens de campo obrigatório
-    this.emailRequiredMessage = page.getByText('Email é obrigatório');
-    this.passwordRequiredMessage = page.getByText('Password é obrigatório');
+    // O componente de validação do front é renderizado em um container .alert,
+    // então usamos um filtro por texto para evitar flakiness entre browsers.
+    this.emailRequiredMessage = page.locator('.alert').filter({ hasText: 'Email é obrigatório' });
+    this.passwordRequiredMessage = page.locator('.alert').filter({ hasText: 'Password é obrigatório' });
   }
 
   async goto() {
