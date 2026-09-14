@@ -6,14 +6,19 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](#-licença)
 
 Suíte de testes end-to-end para a tela de login do front-end do
-[ServeRest](https://front.serverest.dev/login), construída com **Playwright**
-e **Page Object Model**, com pipeline de CI no GitHub Actions.
+[ServeRest](https://front.serverest.dev/login), construída com **Playwright**,
+**Page Object Model** e organização por suites para facilitar manutenção,
+execução e apresentação como projeto de portfólio.
 
 Este projeto faz parte do meu portfólio de QA Automation / SDET — outros
 projetos: veja o [perfil do GitHub](https://github.com/rodrigodsss).
 
-Status atual: a suíte foi validada em execução real e está passando em
-**Chromium, Firefox e WebKit** com **24 testes automatizados**.
+## ✅ Status atual
+
+- **48 testes automatizados** distribuídos em `e2e`, `smoke` e `regression`
+- **Execução cross-browser** em Chromium, Firefox e WebKit
+- **CI com GitHub Actions** e publicação do relatório HTML como artefato
+- **Validação contínua** em execução real, com suíte estável e documentada
 
 ---
 
@@ -23,6 +28,17 @@ O objetivo foi cobrir de ponta a ponta os principais fluxos e regras de
 validação da tela de login do ServeRest, aplicando boas práticas de
 automação: Page Object Model, massa de dados dinâmica com `faker`, execução
 cross-browser e relatório HTML no CI.
+
+## 🎯 Destaques do projeto
+
+Este repositório foi pensado para demonstrar boas práticas de automação de
+interface em um contexto de portfólio:
+
+- estrutura organizada por intenção de teste (`e2e`, `smoke`, `regression`)
+- Page Object Model reutilizável e fácil de evoluir
+- selectors atualizados com base no DOM real do sistema
+- execução cross-browser com relatórios HTML e pipeline de CI
+- documentação clara para facilitar revisão por recrutadores, clientes e times
 
 ## ✅ Cenários cobertos
 
