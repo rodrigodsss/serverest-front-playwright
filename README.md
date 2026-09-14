@@ -12,6 +12,10 @@ e **Page Object Model**, com pipeline de CI no GitHub Actions.
 Este projeto faz parte do meu portfólio de QA Automation / SDET — outros
 projetos: veja o [perfil do GitHub](https://github.com/rodrigodsss).
 
+A suíte foi recentemente revista para refletir a interface atual do ServeRest,
+com seletores mais estáveis baseados em placeholders, acessibilidade e
+atributos de teste do front em produção.
+
 ---
 
 ## 📋 Sobre o projeto
@@ -90,12 +94,12 @@ como conectar o servidor oficial **Playwright MCP** ao Claude Code para
 validar seletores contra o DOM real, gerar novos cenários de teste e depurar
 falhas — mantendo o Page Object Model como padrão.
 
-## ⚠️ Nota sobre os seletores
+## ✅ Observação sobre os seletores
 
-Os seletores em \`LoginPage.js\` foram montados com base na estrutura
-conhecida/documentada do ServeRest, mas recomenda-se validá-los contra o DOM
-real com \`npx playwright codegen https://front.serverest.dev/login\` ou via
-Playwright MCP antes de considerar a suíte 100% confiável em produção.
+Os seletores em `LoginPage.js` foram atualizados para refletir o DOM atual do
+ServeRest e validados em execução real com Playwright. A abordagem atual usa
+placeholders, role-based locators e `data-testid` quando necessário, o que
+reduz a fragilidade dos testes em relação a pequenas mudanças visuais do front.
 
 ## 📬 Contato
 
