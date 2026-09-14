@@ -1,7 +1,7 @@
-// tests/login.spec.js
+// tests/e2e/login.spec.js
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('./pages/LoginPage');
-const { validUser } = require('./fixtures/users');
+const { LoginPage } = require('../pages/LoginPage');
+const { validUser } = require('../fixtures/users');
 
 test.describe('Login - ServeRest Front', () => {
   /** @type {LoginPage} */

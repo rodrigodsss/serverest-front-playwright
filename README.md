@@ -53,9 +53,12 @@ serverest-front-playwright/
 ├── docs/
 │   └── TEST_PLAN.md                   # Plano de testes e estratégia
 ├── tests/
+│   ├── e2e/login.spec.js              # Fluxos de negócio principais
+│   ├── smoke/login.spec.js            # Validações rápidas de smoke
+│   ├── regression/login.spec.js       # Casos críticos de regressão
 │   ├── pages/LoginPage.js             # Page Object da tela de login
 │   ├── fixtures/users.js              # Massa de dados
-│   └── login.spec.js                  # Casos de teste
+│   └── pages/                         # Page Objects por tela
 ├── MCP-CLAUDE-WORKFLOW.md             # Como usar Playwright MCP + Claude Code
 ├── playwright.config.js               # Configuração do Playwright
 ├── package.json                       # Scripts e dependências
@@ -72,9 +75,15 @@ cd serverest-front-playwright
 npm install
 npx playwright install
 
-npm test              # roda em todos os browsers configurados
+npm test              # roda todas as suites configuradas
+npm run test:e2e      # executa apenas a suite E2E
+npm run test:smoke    # executa apenas a suite Smoke
+npm run test:regression # executa apenas a suite de regressão
 npm run test:headed   # com navegador visível
 npm run test:ui       # UI mode do Playwright, ótimo para debugar
+npm run test:chromium # executa apenas o projeto Chromium
+npm run test:firefox  # executa apenas o projeto Firefox
+npm run test:webkit   # executa apenas o projeto WebKit
 npm run report        # abre o último relatório HTML
 \`\`\`
 
@@ -126,16 +135,16 @@ recomendo manter a estrutura atual e evoluir com estas boas práticas:
 - `.github/workflows/`: automatização de CI/CD
 - `MCP-CLAUDE-WORKFLOW.md`: documentação de ferramentas auxiliares
 
-Se o projeto crescer, uma evolução natural seria separar suites por objetivo,
-por exemplo:
+A organização já foi aplicada com sucesso no projeto:
 
 - `tests/e2e/` para fluxos de negócio
-- `tests/regression/` para cenários críticos
 - `tests/smoke/` para validações rápidas
-- `scripts/` para setup, relatórios e utilitários
+- `tests/regression/` para cenários críticos
+- `tests/pages/` e `tests/fixtures/` para base reutilizável
+- `scripts/` pode ser usado futuramente para utilitários e setup
 
-Isso mantém a base sólida do projeto e deixa o repositório mais fácil de
-apresentar para recrutadores ou clientes.
+Essa estrutura mantém o projeto profissional, fácil de navegar e mais fácil de
+apresentar para recrutadores, clientes e times de QA.
 
 ## 📬 Contato
 

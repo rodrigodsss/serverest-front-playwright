@@ -4,9 +4,15 @@
   "description": "Suíte de testes E2E com Playwright para o front-end do ServeRest (https://front.serverest.dev)",
   "scripts": {
     "test": "playwright test",
+    "test:e2e": "playwright test tests/e2e",
+    "test:smoke": "playwright test tests/smoke",
+    "test:regression": "playwright test tests/regression",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
     "report": "playwright show-report"
   },
   "devDependencies": {
