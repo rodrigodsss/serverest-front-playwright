@@ -12,9 +12,8 @@ e **Page Object Model**, com pipeline de CI no GitHub Actions.
 Este projeto faz parte do meu portfólio de QA Automation / SDET — outros
 projetos: veja o [perfil do GitHub](https://github.com/rodrigodsss).
 
-A suíte foi recentemente revista para refletir a interface atual do ServeRest,
-com seletores mais estáveis baseados em placeholders, acessibilidade e
-atributos de teste do front em produção.
+Status atual: a suíte foi validada em execução real e está passando em
+**Chromium, Firefox e WebKit** com **24 testes automatizados**.
 
 ---
 
@@ -29,14 +28,14 @@ cross-browser e relatório HTML no CI.
 
 | # | Cenário | Resultado esperado |
 |---|---------|---------------------|
-| 1 | Login com credenciais válidas | Redireciona para `/home` |
+| 1 | Login com credenciais válidas | Redireciona para `/admin/home` |
 | 2 | Login com email não cadastrado | Mensagem "Email e/ou senha inválidos" |
 | 3 | Login com senha incorreta para email válido | Mensagem "Email e/ou senha inválidos" |
 | 4 | Email e senha vazios | Exibe as duas validações obrigatórias |
 | 5 | Apenas email vazio | Exibe validação de email obrigatório |
 | 6 | Apenas senha vazia | Exibe validação de senha obrigatória |
-| 7 | Email com formato inválido | Não navega para `/home` |
-| 8 | Clique em "Cadastre-se" | Navega para `/cadastrarusuarios` |
+| 7 | Email com formato inválido | Permanece na tela de login |
+| 8 | Clique em "Cadastre-se" | Navega para a tela de cadastro de usuários |
 
 ## 🛠️ Stack
 
@@ -51,13 +50,18 @@ cross-browser e relatório HTML no CI.
 \`\`\`
 serverest-front-playwright/
 ├── .github/workflows/playwright.yml   # Pipeline de CI
+├── docs/
+│   └── TEST_PLAN.md                   # Plano de testes e estratégia
 ├── tests/
 │   ├── pages/LoginPage.js             # Page Object da tela de login
 │   ├── fixtures/users.js              # Massa de dados
 │   └── login.spec.js                  # Casos de teste
-├── playwright.config.js
-├── package.json
-└── MCP-CLAUDE-WORKFLOW.md             # Como usar Playwright MCP + Claude Code no projeto
+├── MCP-CLAUDE-WORKFLOW.md             # Como usar Playwright MCP + Claude Code
+├── playwright.config.js               # Configuração do Playwright
+├── package.json                       # Scripts e dependências
+├── README.md                          # Visão geral do projeto
+├── LICENSE                            # Licença do projeto
+└── package-lock.json                  # Lockfile do projeto para CI
 \`\`\`
 
 ## 🚀 Como rodar localmente
@@ -77,9 +81,15 @@ npm run report        # abre o último relatório HTML
 ## 🤖 CI/CD
 
 Todo push/PR para \`main\` dispara o workflow
-[\`playwright.yml\`](.github/workflows/playwright.yml), que instala as
-dependências, roda a suíte completa e publica o relatório HTML como artefato
-do GitHub Actions.
+[\`playwright.yml\`](.github/workflows/playwright.yml), que:
+
+- instala as dependências com `npm ci`
+- usa cache para `node_modules` e browsers do Playwright
+- executa a suíte completa em Chromium, Firefox e WebKit
+- publica o relatório HTML como artefato do GitHub Actions
+
+Essa abordagem reduz tempo de execução e deixa o processo de CI mais estável
+para um portfólio profissional.
 
 ## 📑 Plano de Testes
 
@@ -94,12 +104,38 @@ como conectar o servidor oficial **Playwright MCP** ao Claude Code para
 validar seletores contra o DOM real, gerar novos cenários de teste e depurar
 falhas — mantendo o Page Object Model como padrão.
 
+Esse fluxo é especialmente útil para projetos de portfólio porque ajuda a
+ajustar testes de forma mais inteligente, com validação do DOM real e menos
+dependência de suposições manuais.
+
 ## ✅ Observação sobre os seletores
 
 Os seletores em `LoginPage.js` foram atualizados para refletir o DOM atual do
 ServeRest e validados em execução real com Playwright. A abordagem atual usa
 placeholders, role-based locators e `data-testid` quando necessário, o que
 reduz a fragilidade dos testes em relação a pequenas mudanças visuais do front.
+
+## 🧭 Sugestão de organização para portfólio
+
+Para deixar este repositório melhor organizado como peça de portfólio, eu
+recomendo manter a estrutura atual e evoluir com estas boas práticas:
+
+- `tests/pages/`: Page Objects dedicados por tela
+- `tests/fixtures/`: dados e mock inputs reutilizáveis
+- `docs/`: plano de testes, decisões e evidências
+- `.github/workflows/`: automatização de CI/CD
+- `MCP-CLAUDE-WORKFLOW.md`: documentação de ferramentas auxiliares
+
+Se o projeto crescer, uma evolução natural seria separar suites por objetivo,
+por exemplo:
+
+- `tests/e2e/` para fluxos de negócio
+- `tests/regression/` para cenários críticos
+- `tests/smoke/` para validações rápidas
+- `scripts/` para setup, relatórios e utilitários
+
+Isso mantém a base sólida do projeto e deixa o repositório mais fácil de
+apresentar para recrutadores ou clientes.
 
 ## 📬 Contato
 
